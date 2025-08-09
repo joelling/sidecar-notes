@@ -8,6 +8,7 @@ class MenuBarController: ObservableObject {
     @Published var audioQuality: AudioQualityStatus = .unknown
     @Published var permissionsGranted = false
     
+    var statusItem: NSStatusItem?
     private var recordingTimer: Timer?
     private var recordingStartTime: Date?
     
@@ -259,7 +260,7 @@ class MenuBarController: ObservableObject {
     // MARK: - UI Updates
     
     private func updateMenuBarIcon() {
-        guard let button = NSApp.statusBarItem?.button else { return }
+        guard let statusItem = statusItem, let button = statusItem.button else { return }
         
         let iconName = isRecording ? "mic.fill" : "mic"
         button.image = NSImage(systemSymbolName: iconName, accessibilityDescription: "Sidecar Notes")

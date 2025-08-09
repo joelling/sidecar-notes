@@ -34,6 +34,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         statusItem.menu = menuBarController.createMenu()
+        
+        // Set up menu bar icon updates
+        menuBarController.statusItem = statusItem
     }
     
     func applicationWillTerminate(_ notification: Notification) {
